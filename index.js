@@ -25,6 +25,16 @@ db.serialize(() => {
     }
   );
 });
+db.run(
+  `INSERT INTO BioBox VALUES("Bla",date('now'),time('now'))`,
+  function (err) {
+    if (err) {
+      return console.log(err.message);
+    }
+    // get the last insert id
+    console.log(`A row has been inserted with rowid ${this.lastID}`);
+  }
+);
 
 db.close((err) => {
   if (err) {
